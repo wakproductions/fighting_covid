@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Indianapolis Fighting Covid-19
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track': 'reload')
+    = javascript_pack_tag('application', 'data-turbolinks-track': 'reload')
+
+  body
+    header
+      = render(partial: 'layouts/top_navbar')
+    = yield
