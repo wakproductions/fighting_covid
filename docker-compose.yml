@@ -1,0 +1,30 @@
+version: '3'
+services:
+  backend:
+    build: ./
+    command: ['rails', 'server', '-b', '0.0.0.0', '-p', '3000']
+    container_name: fighting_covid_backend
+    depends_on:
+      - db
+    entrypoint: ['./scripts/docker-entry.sh']
+    links:
+      - db
+    ports:
+      - '3005:3000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/backend
+
+  db:
+    command: ['postgres']
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    image: 'postgres:9.6.2'
+    ports:
+      - '5445:5432'
+    volumes:
+      - pgdata_117:/var/lib/postgresql/data
+
+volumes:
+  pgdata_117:
