@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     nodejs
 
+WORKDIR /backend
 
 # Set yarn version
 ENV YARN_VERSION 1.21.1
@@ -17,9 +18,16 @@ RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$
   && ln -snf /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz
 
+COPY lib ./lib
 
-WORKDIR /backend
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install --jobs 20 --retry 5
+
+COPY . .
 
 EXPOSE 3000
+
+# So we don't have to specify "bundle exec" for each of our commands
 ENTRYPOINT ['bundle', 'exec']
+
 CMD ["rails", "server", "-p", "3000", "-b", "0.0.0.0"]

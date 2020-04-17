@@ -18,6 +18,7 @@ services:
 
   db:
     command: ['postgres']
+    container_name: fighting_covid_database
     environment:
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     image: 'postgres:9.6.2'
