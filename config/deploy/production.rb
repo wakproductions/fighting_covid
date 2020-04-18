@@ -21,7 +21,8 @@ namespace :custom do
       execute "cd #{fetch(:deploy_to)}/current; docker rm #{fetch(:containers).join(' ')}; true"
 
       # restart
-      execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d"
+      # execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d"
+      execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml up -d"
       execute "docker network prune -f"
 
       # Run the daemons

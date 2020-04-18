@@ -7,6 +7,8 @@ services:
     depends_on:
       - db
     entrypoint: ['./scripts/docker-entry.sh']
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
     links:
       - db
     ports:
