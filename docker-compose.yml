@@ -10,7 +10,7 @@ services:
     links:
       - db
     ports:
-      - '3005:3000'
+      - '8091:3000'
     stdin_open: true
     tty: true
     volumes:
