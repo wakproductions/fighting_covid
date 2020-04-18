@@ -9,6 +9,8 @@ services:
     entrypoint: ['./scripts/docker-entry.sh']
     environment:
       - RAILS_ENV=${RAILS_ENV:-development}
+      - RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     links:
       - db
     ports:
