@@ -1,18 +1,16 @@
 default: &default
   adapter: postgresql
-  host: db
-  username: postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: fighting_covid_development
+  database_url: postgres://postgres:<%= ENV.fetch('DB_PASSWORD') %>@db:5432/fighting_covid_development
 
 test:
   <<: *default
-  database: fighting_covid_test
+  database_url: postgres://postgres:<%= ENV.fetch('DB_PASSWORD') %>@db:5432/fighting_covid_test
 
 production:
   <<: *default
-  database: fighting_covid_production
+  database_url: <%= ENV.fetch('DATABASE_URL') %>

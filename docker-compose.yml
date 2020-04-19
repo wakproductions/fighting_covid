@@ -8,9 +8,10 @@ services:
       - db
     entrypoint: ['./scripts/docker-entry.sh']
     environment:
-      - RAILS_ENV=${RAILS_ENV:-development}
-      - RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES}
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      DB_PASSWORD: ${DB_PASSWORD:-localdev}
+      RAILS_ENV: ${RAILS_ENV:-development}
+      RAILS_SERVE_STATIC_FILES: ${RAILS_SERVE_STATIC_FILES:-false}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     links:
       - db
     ports:
@@ -24,7 +25,7 @@ services:
     command: ['postgres']
     container_name: fighting_covid_database
     environment:
-      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-localdev}
     image: 'postgres:9.6.2'
     ports:
       - '5445:5432'
