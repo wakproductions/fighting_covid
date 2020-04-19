@@ -8,7 +8,7 @@ services:
       - db
     entrypoint: ['./scripts/docker-entry.sh']
     environment:
-      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:localdev@db:5432/}
       DB_PASSWORD: ${DB_PASSWORD:-localdev}
       RAILS_ENV: ${RAILS_ENV:-development}
       RAILS_SERVE_STATIC_FILES: ${RAILS_SERVE_STATIC_FILES:-false}
