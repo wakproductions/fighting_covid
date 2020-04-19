@@ -22,6 +22,7 @@ namespace :custom do
 
       # restart
       # execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d"
+      execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml run backend bundle exec rake webpacker:compile"
       execute "cd #{fetch(:deploy_to)}/current; docker-compose -f docker-compose.yml up -d"
       execute "docker network prune -f"
 
