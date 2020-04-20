@@ -1,0 +1,40 @@
+.row
+  .col-md-10.offset-1
+    .card.p-3
+      h1.m-3 Indianapolis Fighting Covid Volunteer Help Sign Up Form
+
+      .m-3= form_with(url: survey_volunteer_sign_ups_path, local: true) do
+
+        p We are currently looking for people with the expertise to 3D print or assemble other types of
+          PPE for front line workers. Please let us know what kind of assistance or skill you are able to provide.
+        .form-check
+          = check_box_tag('type_of_help[3d_print]', true, false, class: 'form-check-input')
+          = label_tag('type_of_help[3d_print]', 'I have a 3D printer and would like to create parts', class: 'form-check-label')
+        .form-check
+          = check_box_tag('type_of_help[assembly_distribution]', true, false, class: 'form-check-input')
+          = label_tag('type_of_help[assembly_distribution]', \
+                      'I would like to help with the assembly and distribution of PPE to organizations that need PPE',
+                      class: 'form-check-label')
+        .form-check
+          = check_box_tag('type_of_help[admin]', true, false, class: 'form-check-input')
+          = label_tag('type_of_help[admin]', 'I can contribute administrative skills to organizing the effort',
+                      class: 'form-check-label')
+
+        .row.mb-4
+
+        .form-group
+          = label_tag(:message) do
+            p Tell us whatever message you have for us
+          = text_area_tag(:message, '', class: 'form-control')
+
+        .form-group
+          = label_tag(:name)
+          = text_field_tag :name, '', class: 'form-control'
+
+        .form-group
+          = label_tag(:email)
+          = text_field_tag(:email, '', class: 'form-control')
+
+
+
+        = submit_tag('Submit', class: 'btn btn-primary')

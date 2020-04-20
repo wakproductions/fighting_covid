@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get :provider_request, to: 'home#provider_request'
-  get :volunteer_sign_up, to: 'home#volunteer_sign_up'
+  resources :survey_volunteer_sign_ups, only: [:new, :create]
+  get :provider_request, to: 'survey_provider_requests#new'
 
   root 'home#index'
 end

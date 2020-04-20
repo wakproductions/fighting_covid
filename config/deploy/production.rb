@@ -3,6 +3,7 @@ server 'fightingcovid', user: 'deployuser', roles: %w{web app db}
 
 set :deploy_to, '/var/www/fightingcovid'
 set :containers, %w(fighting_covid_backend fighting_covid_database)
+set :keep_releases, 50 # having a problem with the cleanup task being unable to delete docker created files, owned by root
 
 namespace :custom do
   task :setup_container do

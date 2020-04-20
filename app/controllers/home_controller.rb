@@ -4,12 +4,4 @@ class HomeController < ApplicationController
 
   end
 
-  def provider_request
-
-  end
-
-  def volunteer_sign_up
-
-  end
-
 end
