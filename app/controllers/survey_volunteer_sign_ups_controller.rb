@@ -18,7 +18,6 @@ class SurveyVolunteerSignUpsController < ApplicationController
   # Not using strong params right now
   def survey_params
     params.permit(
-      :form_type,
       :name,
       :email,
       :message,

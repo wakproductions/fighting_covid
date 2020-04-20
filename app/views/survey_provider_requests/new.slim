@@ -1,3 +1,25 @@
 .row
   .col-md-10.offset-1
-    .card
+    .card.p-3
+      h1.m-3 Indianapolis Fighting Covid Provider Request Path
+
+      .m-3= form_with(url: survey_provider_requests_path, local: true) do
+
+        p We are just getting this project started. If you are an organization or healthcare professional in need of
+          supplies, please write to us using this form and we will see what we can do to have the maker community
+          build to suit your needs.
+
+        .form-group
+          = label_tag(:message) do
+            p Write a message describing or your needs or organization problems here:
+          = text_area_tag(:message, '', class: 'form-control')
+
+        .form-group
+          = label_tag(:name)
+          = text_field_tag :name, '', class: 'form-control'
+
+        .form-group
+          = label_tag(:email)
+          = text_field_tag(:email, '', class: 'form-control')
+
+        = submit_tag('Submit', class: 'btn btn-primary')
